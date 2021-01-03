@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class crawler extends Command
 {
@@ -11,7 +12,7 @@ class crawler extends Command
      *
      * @var string
      */
-    protected $signature = 'demo:cron';
+    protected $signature = 'crawler:cron';
 
     /**
      * The console command description.
@@ -37,6 +38,8 @@ class crawler extends Command
      */
     public function handle()
     {
+        // dd('crawler run');
+        Log::info("Cron is working fine!");
         return 0;
     }
 }
