@@ -11,10 +11,10 @@ class Crawler extends Controller
     public function crawler()
     {
         $client = new Client();
-        $crawler = $client->request('GET', 'https://astro.click108.com.tw/daily_10.php?iAstro=10');
         $now = date('Y-m-d');
-        $constellationNames = ['水瓶座', '雙魚座', '牡羊座', '金牛座', '雙子座', '巨蟹座', '獅子座', '處女座', '天平座', '天蠍座', '射手座', '魔羯座'];
+        $constellationNames = ['牡羊座', '金牛座', '雙子座', '巨蟹座', '獅子座', '處女座', '天平座', '天蠍座', '射手座', '魔羯座', '水瓶座', '雙魚座'];
         foreach ($constellationNames as $key => $constellationName) {
+            $crawler = $client->request('GET', "https://astro.click108.com.tw/daily_$key.php?iAstro=$key");
             $crawlerContent = [];
             $crawler->filter('div.TODAY_CONTENT > p')->each(function ($node) use (&$crawlerContent) {
                 array_push($crawlerContent, $node->text());
@@ -48,6 +48,12 @@ class Crawler extends Controller
                 ]);
             }
         }
+        $dbDataAll = Constellation::all();
+        $headers = array('Content-Type' => 'application/json; charset=utf-8');
+        return response()->json($dbDataAll, 200, $headers, JSON_UNESCAPED_UNICODE);
+    }
+    public function showTodayLuck()
+    {
         $dbDataAll = Constellation::all();
         $headers = array('Content-Type' => 'application/json; charset=utf-8');
         return response()->json($dbDataAll, 200, $headers, JSON_UNESCAPED_UNICODE);

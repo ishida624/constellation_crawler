@@ -19,3 +19,4 @@ Route::get('/', function () {
 });
 
 Route::get('crawler', [Crawler::class, 'crawler']);
+Route::get('showTodayLuck', [Crawler::class, 'showTodayLuck']);
