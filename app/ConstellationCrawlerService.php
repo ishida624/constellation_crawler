@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App;
 
-use Illuminate\Http\Request;
 use Goutte\Client;
 use App\Models\Constellation;
 
-class Crawler extends Controller
+class ConstellationCrawlerService
 {
-    public function crawler()
+    public function constellationCrawler()
     {
+        # code...
         $client = new Client();
         $now = date('Y-m-d');
         $constellationNames = ['牡羊座', '金牛座', '雙子座', '巨蟹座', '獅子座', '處女座', '天平座', '天蠍座', '射手座', '魔羯座', '水瓶座', '雙魚座'];
@@ -48,14 +48,5 @@ class Crawler extends Controller
                 ]);
             }
         }
-        $dbDataAll = Constellation::all();
-        $headers = array('Content-Type' => 'application/json; charset=utf-8');
-        return response()->json($dbDataAll, 200, $headers, JSON_UNESCAPED_UNICODE);
-    }
-    public function showTodayLuck()
-    {
-        $dbDataAll = Constellation::all();
-        $headers = array('Content-Type' => 'application/json; charset=utf-8');
-        return response()->json($dbDataAll, 200, $headers, JSON_UNESCAPED_UNICODE);
     }
 }

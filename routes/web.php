@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Crawler;
+use App\Http\Controllers\CrawlerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,5 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('crawler', [Crawler::class, 'crawler']);
-Route::get('showTodayLuck', [Crawler::class, 'showTodayLuck']);
+Route::get('crawler', [CrawlerController::class, 'crawler']);
+Route::get('showTodayLuck', [CrawlerController::class, 'showTodayLuck']);
